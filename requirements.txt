@@ -1,6 +1,7 @@
 joblib==1.2.0
-numpy==1.19.5
-pandas==1.4.2
+numpy==1.20.3
+pandas==1.5.0
 scikit_learn==1.2.1
 pyarrow==11.0.0
-craft_ai_sdk==0.12.0
+fastparquet==2023.2.0
+craft-ai-sdk==0.10.1
