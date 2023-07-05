@@ -12,8 +12,7 @@ sdk = CraftAiSdk(
 )
 try:
     sdk.delete_pipeline(
-        pipeline_name="part-1-hello-world-pipeline",
-        force_deployments_deletion=True,
+        pipeline_name="part-1-hello-world", force_deployments_deletion=True,
     )
 except SdkException as e:
     print(e)

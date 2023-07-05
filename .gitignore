@@ -7,6 +7,9 @@
 # Jupyter Notebook
 .ipynb_checkpoints
 
+# mypy
+.mypy_cache
+
 # pytest
 .pytest_cache
 

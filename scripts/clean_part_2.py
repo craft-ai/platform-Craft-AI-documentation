@@ -11,12 +11,11 @@ sdk = CraftAiSdk(
 )
 try:
     sdk.delete_pipeline(
-        pipeline_name="part-2-irisclassifier-pipeline",
-        force_deployments_deletion=True,
+        pipeline_name="part-2-iristrain", force_deployments_deletion=True,
     )
 except SdkException as e:
     print(e)
 try:
-    sdk.delete_step(step_name="part-2-irisclassifier-step")
+    sdk.delete_step(step_name="part-2-iristrain")
 except SdkException as e:
     print(e)
