@@ -3,7 +3,7 @@ numpy==1.22.4
 pandas==1.4.2
 scikit_learn==1.2.1
 pyarrow==11.0.0
-craft_ai_sdk==0.30.0
+craft_ai_sdk==0.31.0
 nbformat==5.9.0
 nbconvert==7.6.0
 python-dotenv==0.20.0
