@@ -1,0 +1,6 @@
+craft_ai_sdk==0.43.4
+transformers
+python-dotenv
+torch
+bitsandbytes
+accelerate
