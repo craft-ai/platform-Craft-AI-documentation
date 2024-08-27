@@ -3,6 +3,12 @@ from src.deploy_llm_easy import get_quant_model
 from src import PREPROMPT
 
 
+# get the huggingface id of the model
+model_name = "mistralai/Mistral-7B-Instruct-v0.2"
+# get the llm quantized ready to be called
+llm = get_quant_model(model_name)
+
+
 def deploy_mistral_easy(message: str) -> dict:
     """This function aims to generate text with mistral7B V0.2
     from a query
@@ -11,10 +17,7 @@ def deploy_mistral_easy(message: str) -> dict:
     Returns:
         dict: result from text generation
     """
-    # get the huggingface id of the model
-    model_name = "mistralai/Mistral-7B-Instruct-v0.2"
-    # get the llm quantized ready to be called
-    llm = get_quant_model(model_name)
+
     # formatting the input
     message = f"<s>[INST] {PREPROMPT}\nquestion: {message} [/INST]"
     # generate text from llm

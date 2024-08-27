@@ -2,6 +2,11 @@ import time
 from src import PREPROMPT
 from src.deploy_llm_easy import get_quant_model
 
+# get the huggingface id of the model
+model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
+# get the llm quantized ready to be called
+llm = get_quant_model(model_name)
+
 
 def deploy_llama_easy(message: str):
     """This function aims to generate text with llama3 8B
@@ -11,10 +16,7 @@ def deploy_llama_easy(message: str):
     Returns:
         dict: result from text generation
     """
-    # get the huggingface id of the model
-    model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
-    # get the llm quantized ready to be called
-    llm = get_quant_model(model_name)
+
     # formatting the input
     message = [
         {
