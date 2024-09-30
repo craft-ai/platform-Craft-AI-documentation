@@ -4,7 +4,6 @@ from craft_ai_sdk import CraftAiSdk
 from craft_ai_sdk.exceptions import SdkException
 from craft_ai_sdk.io import Output, OutputDestination, Input, InputSource
 
-# from .step import get_step_description
 from dotenv import load_dotenv
 
 """ Running this script will create all the necessary Craft.AI objects 
@@ -47,13 +46,8 @@ def build_mistral_7B_pipeline_deploy():
         sdk.delete_pipeline(deployment_name)
     except SdkException:
         pass
-    try:
-        print("Deleting step...")
-        sdk.delete_step(deployment_name)
-    except SdkException:
-        pass
 
-    # Setting up the necessary configurations for step creation
+    # Setting up the necessary configurations for pipeline creation
     container_config = {
         "local_folder": os.environ["LOCAL_DIRECTORY"],
         "language": "python-cuda:3.10-12.1",
@@ -61,13 +55,12 @@ def build_mistral_7B_pipeline_deploy():
         "included_folders": ["/"],
     }
 
-    # Creating the step encapsulating the code deploying Mistral
-    print("Creating step...")
-
-    sdk.create_step(
-        function_path="/pipelines/mistral_7b_deploy/step.py",
+    # Creating the pipeline to deploy Mistral
+    print("Creating pipeline...")
+    sdk.create_pipeline(
+        pipeline_name=deployment_name,
+        function_path="/pipelines/mistral_7b_deploy/func_used.py",
         function_name="deploy_mistral_easy",
-        step_name=deployment_name,
         container_config=container_config,
         outputs=[
             Output(name="results", data_type="json"),
@@ -76,13 +69,6 @@ def build_mistral_7B_pipeline_deploy():
             Input(name="message", data_type="string"),
         ],
         timeout_s=7200,
-    )
-
-    # Creating the pipeline associated with the step
-    print("Creating pipeline...")
-    sdk.create_pipeline(
-        pipeline_name=deployment_name,
-        step_name=deployment_name,
     )
 
     # Deploying the pipeline using an endpoint
@@ -95,13 +81,13 @@ def build_mistral_7B_pipeline_deploy():
         mode="low_latency",
         inputs_mapping=[
             InputSource(
-                step_input_name="message",
+                pipeline_input_name="message",
                 endpoint_input_name="message",
             ),
         ],
         outputs_mapping=[
             OutputDestination(
-                step_output_name="results", endpoint_output_name="results"
+                pipeline_output_name="results", endpoint_output_name="results"
             ),
         ],
         timeout_s=6000,
