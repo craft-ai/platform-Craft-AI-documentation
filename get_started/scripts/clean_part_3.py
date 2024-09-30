@@ -11,11 +11,8 @@ sdk = CraftAiSdk(
 )
 try:
     sdk.delete_pipeline(
-        pipeline_name="part-3-irisio", force_deployments_deletion=True,
+        pipeline_name="part-3-irisio",
+        force_deployments_deletion=True,
     )
-except SdkException as e:
-    print(e)
-try:
-    sdk.delete_step(step_name="part-3-irisio")
 except SdkException as e:
     print(e)
