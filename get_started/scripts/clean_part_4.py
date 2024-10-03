@@ -20,7 +20,7 @@ except SdkException as e:
 
 try:
     sdk.delete_pipeline(
-        pipeline_name="part-4-iris-predict-pipeline",
+        pipeline_name="part-4-iristrain",
         force_deployments_deletion=True,
     )
 except SdkException as e:
