@@ -1,4 +1,4 @@
-craft_ai_sdk==0.50.0
+craft_ai_sdk==0.52.0
 transformers
 python-dotenv
 torch
