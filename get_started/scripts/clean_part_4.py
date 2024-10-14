@@ -17,25 +17,12 @@ try:
     )
 except SdkException as e:
     print(e)
-try:
-    sdk.delete_step(step_name="part-4-iris-deployment")
-except SdkException as e:
-    print(e)
 
 try:
     sdk.delete_pipeline(
-        pipeline_name="part-4-iris-predict-pipeline",
+        pipeline_name="part-4-iristrain",
         force_deployments_deletion=True,
     )
-except SdkException as e:
-    print(e)
-try:
-    sdk.delete_step(step_name="part-4-iris-predict-step")
-except SdkException as e:
-    print(e)
-
-try:
-    sdk.delete_step("part-4-iristrain", force_dependents_deletion=True)
 except SdkException as e:
     print(e)
 
